@@ -31,8 +31,18 @@
       <div class="main-content container">
         <div class="main-menu">
             <div class="main-menu-categories">
-              <i class="fa fa-chevron-down main-menu-categories-type-expand"></i>
-              <h3 class="main-menu-categories-type">Popular Items</h3>
+              <!-- insert menu categories and items here -->
+              <div class="main-menu-categories-type">
+                <i class="fa fa-chevron-down main-menu-categories-type-expand"></i>
+                <h3 class="main-menu-categories-type-text">Popular Items</h3>
+              </div>
+              <ul class="main-menu-categories-items">
+                <li class="main-menu-categories-items-item">
+                  <button class="item-price">$999</button>
+                  <h4>1. Burger</h4>
+                  <p>Big slab-o-beef and junk piled high.</p>
+                </li>
+              </ul>
             </div>
           </div>
           <div class="main-order">
@@ -44,13 +54,13 @@
               </div>
               <div class="cart-divide"></div>
               <div class="your-cart-values">
-                <p class="your-cart-values-item">{{name}}</p>
-                <p class="your-cart-values-price">{{price}}</p>
+                <!-- Insert Item values in cart -->
               </div>
               <div class="your-cart-tally">
                 <h4 class="your-cart-tally-label">Subtotal</h4>
                 <h4 class="your-cart-tally-subtotal">{{total}}</h4>
               </div>
+              <button class="submit-order"><i class="fa fa-check fa-2x"></i></button>
             </div>
           </div>
         </div>

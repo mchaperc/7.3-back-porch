@@ -6,7 +6,7 @@ $base-font-family: $helvetica;
 
 // Colors
 $blue: rgb(52, 152, 219);
-$tan: rgb(253, 246, 162);
+$tan: rgb(255, 255, 212);
 $red: rgb(237, 95, 36);
 $dark-gray: rgb(181, 181, 191);
 $medium-gray: rgb(232, 232, 232);
@@ -71,10 +71,6 @@ body {
 	@include outer-container(980px);
 }
 
-.main-content.container {
-	padding: 0;
-}
-
 .search-bar {
 	background-color: white;
 	border-bottom: 1px solid $medium-gray;
@@ -101,6 +97,9 @@ body {
 
 .main-menu-categories {
 	@include span-columns(8);
+}
+
+.main-menu-categories-type {
 	background-color: $light-gray;
 	border: 1px solid $medium-gray;
 	color: $red;
@@ -108,11 +107,13 @@ body {
 	height: 60px;
 	line-height: 60px;
 	padding-left: 1em;
+	transition: all .2s linear;
+	width: 100%;
 }
 
-.main-menu-categories:hover {
+.main-menu-categories-type:hover {
 	background-color: $tan;
-	border: 1px solid $sky;
+	border: 1px solid $red;
 	color: $black;
 	cursor: pointer;
 }
@@ -122,6 +123,47 @@ body {
 	font-weight: 300;
 	line-height: 60px;
 	margin-right: 5%;
+}
+
+.main-menu-categories-items-item {
+	background-color: white;
+	border: 1px solid $medium-gray;
+	color: $black;
+	padding: 1.5em;
+	transition: all .2s linear;
+}
+
+.main-menu-categories-items-item:hover {
+	background-color: $tan;
+	border: 1px solid $red;
+	color: $black;
+	cursor: pointer;
+}
+
+.item-price {
+	background-color: white;
+	border: 1px solid $red;
+	border-radius: 3px;
+	float: right;
+	font-size: .8em;
+	padding: .5em;
+	transition: all .2s linear;
+}
+
+.item-price:hover {
+	background-color: $red;
+	color: white;
+	cursor: pointer;
+}
+
+.main-menu-categories-items-item h4 {
+	font-size: 1.5em;
+	margin-bottom: .5em;
+	width: 50%;
+}
+
+.main-menu-categories-items-item p {
+	font-weight: 300;
 }
 
 .main-order {
@@ -186,4 +228,22 @@ body {
 
 .your-cart-tally-label {
 	margin-right: 6em;
+}
+
+.submit-order {
+	background: linear-gradient($very-light-gray, $medium-gray);
+	border: 2px solid $red;
+	border-radius: 5px;
+	color: $red;
+	margin-top: 3em;
+	height: 50px;
+	transition: all .2s linear;
+	width: 90%;
+}
+
+.submit-order:hover {
+	background: none;
+	background-color: $red;
+	color: white;
+	cursor: pointer;
 }
