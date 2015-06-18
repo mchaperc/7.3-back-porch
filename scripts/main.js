@@ -1,4 +1,5 @@
 import router from 'router';
+import config from 'ajax-config';
 
 (function(){
   'use strict';
