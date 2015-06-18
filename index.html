@@ -7,13 +7,55 @@
 
     <title></title>
 
-    <link rel="stylesheet" href="bower_components/normalize.css/normalize.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700|Montserrat' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="dist/styles/main.css">
 
     <script src="bower_components/modernizr/modernizr.js"></script>
   </head>
   <body>
+
+    <header class="masthead">
+      <div class="masthead-cover">
+        <img src="./img/logo.png" alt="" class="masthead-logo">
+        <h3 class="masthead-text">New Orleans Flavor | 100 Wood Row Spartanburg, SC</h3>
+      </div>
+    </header>
+    <section class="main">
+      <div class="search-bar">
+        <form class="main-menu-search container">
+          <input type="text" class="main-menu-search-input" placeholder="Search Menu"><i class="fa fa-search"></i>
+        </form>
+      </div>
+      <div class="main-content container">
+        <div class="main-menu">
+            <div class="main-menu-categories">
+              <i class="fa fa-chevron-down main-menu-categories-type-expand"></i>
+              <h3 class="main-menu-categories-type">Popular Items</h3>
+            </div>
+          </div>
+          <div class="main-order">
+            <div class="your-cart">
+              <i class="fa fa-shopping-cart fa-2x"></i>
+              <div class="your-cart-labels">
+                <h4 class="your-cart-labels-item">Item</h4>
+                <h4 class="your-cart-labels-price">Price</h4>
+              </div>
+              <div class="cart-divide"></div>
+              <div class="your-cart-values">
+                <p class="your-cart-values-item">{{name}}</p>
+                <p class="your-cart-values-price">{{price}}</p>
+              </div>
+              <div class="your-cart-tally">
+                <h4 class="your-cart-tally-label">Subtotal</h4>
+                <h4 class="your-cart-tally-subtotal">{{total}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   <!-- Third Party Scripts -->
   <script src="bower_components/commonjs-require/commonjs-require.js"></script>
