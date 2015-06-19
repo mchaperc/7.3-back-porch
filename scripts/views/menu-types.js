@@ -9,7 +9,7 @@ export default Backbone.View.extend({
 	hidden: true,
 
 	events: {
-		// 'click .main-menu-categories-type': 'showChildren',
+		'click .main-menu-categories-container': 'showChildren',
 	},
 	
 	initialize: function(options){
@@ -48,13 +48,7 @@ export default Backbone.View.extend({
   	},
 
   	showChildren: function() {
-  		if (this.hidden === true) {
-  			$(this).siblings().show();
-  			this.hidden = false;
-  		} else {
-  			// $(this).
-  			this.hidden = true;
-  		}
+  		console.log('hi');
   	}
 
 });

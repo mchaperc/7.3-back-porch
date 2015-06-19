@@ -22,6 +22,7 @@ $base-background-color: $very-light-gray;
 * {
 	box-sizing: border-box;
 	outline: none;
+	list-style: none;
 }
 
 body {
@@ -97,7 +98,7 @@ body {
 }
 
 .main-menu-categories {
-	@include span-columns(7);
+	@include span-columns(7.5);
 }
 
 .main-menu-categories-type {
@@ -172,15 +173,15 @@ body {
 }
 
 .main-order {
-	@include span-columns(5);
+	@include span-columns(4.5);
 	@include omega();
 }
 
 .your-cart {
 	background-color: white;
 	border: 1px solid $medium-gray;
-	width: 80%;
-	margin: auto;
+	float: right;
+	width: 90%;
 	padding-top: 1em;
 	padding-bottom: 1em;
 	text-align: center;
@@ -197,8 +198,10 @@ body {
 
 .your-cart-labels {
 	margin-top: 1em;
+	margin-bottom: 1em;
 	border-top: 1px solid $medium-gray;
 	padding: .5em;
+	position: relative;
 }
 
 .your-cart-labels h4 {
@@ -207,7 +210,14 @@ body {
 }
 
 .your-cart-labels-item {
-	margin-right: 8em;
+	position: absolute;
+	left: 3%;
+}
+
+.your-cart-labels-price {
+	float: right;
+	margin-right: 3%;
+	@include clearfix;
 }
 
 .cart-divide {
@@ -218,12 +228,23 @@ body {
 }
 
 .your-cart-values p {
-	display: inline-block;
+	// display: inline-block;
 	margin-bottom: 1em;
 }
 
+.your-cart-values {
+	position: relative;
+	@include clearfix;
+}
+
 .your-cart-values-item {
-	margin-right: 6em;
+	position: absolute;
+	left: 3%;
+}
+
+.your-cart-values-price {
+	float: right;
+	margin-right: 1em;
 }
 
 .your-cart-tally h4 {

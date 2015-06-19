@@ -19,8 +19,6 @@ export default Backbone.View.extend({
 	},
 
 	addItem: function() {
-		console.log(this.model);
-		console.log(this.order);
 		this.order.add(this.model);
 	}
 

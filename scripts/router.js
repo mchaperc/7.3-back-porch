@@ -12,7 +12,7 @@ var Router = Backbone.Router.extend({
 
 	initialize: function() {
 		this.menu = new FoodCollection();
-		this.order = new OrderCollection();
+		this.order = new Order();
 	},
 
 	index: function() {
@@ -23,7 +23,6 @@ var Router = Backbone.Router.extend({
 		}.bind(this));
 		this.orderView = new OrderView({collection: this.order});
 		$('.cart-template').html(this.orderView.el);
-		// console.log(this);
 	},
 
 

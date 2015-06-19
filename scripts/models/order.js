@@ -3,6 +3,8 @@ import {FoodCollection} from './foodItem';
 var Order = Backbone.Model.extend({
   idAttribute: 'objectId',
 
+  urlRoot: 'https://api.parse.com/1/classes/Order',
+
   defaults: {
     name: ""
   },
@@ -27,22 +29,34 @@ var Order = Backbone.Model.extend({
 
   toJSON: function(){
     return _.extend({}, this.attributes, {
-      tasks: this.foods.map(function(task){
+      foods: this.foods.map(function(food){
           return {
             "__type": "Pointer",
-            "className": "Task",
-            "objectId": task.id
+            "className": "Food",
+            "objectId": food.id
           };
       })
     });
+  },
+
+  serialize: function() {
+    return _.extend({}, this.attributes, {
+      foods: this.foods.toJSON(),
+      subtotal: this.subtotal()
+    });
+  },
+
+  subtotal: function() {
+    return this.foods.reduce(function(a, b) {
+      return a + b.get('price');
+    }, 0);
   }
 
 });
 
 var OrderCollection = Backbone.Collection.extend({
   model: Order,
-  url: "https://api.parse.com/1/classes/Project",
-  subtotal: 0
+  url: "https://api.parse.com/1/classes/Order"
 });
 
 export default {Order, OrderCollection};

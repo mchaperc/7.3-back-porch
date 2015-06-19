@@ -6,17 +6,25 @@ export default Backbone.View.extend({
 	className: 'dynamic-order',
 
 	events: {
-
+		'click .submit-order': 'submitOrder',
 	},
 
 	initialize: function() {
 		this.render();
 		this.listenTo(this.collection, 'add remove', this.render);
-		console.log(this.collection.subtotal);
+		this.listenTo(this.collection, 'add remove', this.doStuff);
 	},
 
 	render: function() {
-		this.$el.html(this.template(this.collection.toJSON()));
+		this.$el.html(this.template(this.collection.serialize()));
+	},
+
+	doStuff: function(args) {
+		console.log(this.collection.subtotal());
+	},
+
+	submitOrder: function() {
+		this.collection.save();
 	}
 
 });

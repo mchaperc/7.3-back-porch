@@ -53,7 +53,6 @@ export default Backbone.View.extend({
 			this.children.push(typeView);
 			this.$el.append(typeView.el);
 		}.bind(this));
-        console.log(this.children);
 		return this;
 	},
 
