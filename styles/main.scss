@@ -97,7 +97,7 @@ body {
 }
 
 .main-menu-categories {
-	@include span-columns(8);
+	@include span-columns(7);
 }
 
 .main-menu-categories-type {
@@ -117,6 +117,10 @@ body {
 	border: 1px solid $red;
 	color: $black;
 	cursor: pointer;
+}
+
+.main-menu-categories-type > h3 {
+	text-transform: uppercase;
 }
 
 .main-menu-categories .fa {
@@ -168,7 +172,7 @@ body {
 }
 
 .main-order {
-	@include span-columns(4);
+	@include span-columns(5);
 	@include omega();
 }
 
@@ -248,3 +252,7 @@ body {
 	color: white;
 	cursor: pointer;
 }
+
+// .main-menu-categories-items {
+// 	display: none;
+// }
