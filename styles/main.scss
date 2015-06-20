@@ -26,7 +26,7 @@ $base-background-color: $very-light-gray;
 }
 
 body {
-  background-color: $base-background-color;
+  background: $base-background-color;
   color: $base-font-color;
   @include outer-container(1280px);
   font-family: 'Source Sans Pro', sans-serif;
@@ -131,6 +131,10 @@ body {
 	margin-right: 5%;
 }
 
+.main-menu-categories .fa-chevron-up {
+	display: none;
+}
+
 .main-menu-categories-items-item {
 	background-color: white;
 	border: 1px solid $medium-gray;
@@ -153,6 +157,7 @@ body {
 	float: right;
 	font-size: .8em;
 	padding: .5em;
+	width: 50px;
 	transition: all .2s linear;
 }
 
@@ -221,9 +226,9 @@ body {
 }
 
 .cart-divide {
-	border-bottom: 1px solid rgb(240,240,240);
+	border-bottom: 1px solid $medium-gray;
 	margin: auto;
-	margin-bottom: .5em;
+	margin-bottom: .6em;
 	width: 80%;
 }
 
@@ -247,13 +252,24 @@ body {
 	margin-right: 1em;
 }
 
+.your-cart-tally {
+	position: relative;
+}
+
 .your-cart-tally h4 {
 	color: $black;
 	display: inline-block;
 }
 
 .your-cart-tally-label {
-	margin-right: 6em;
+	position: absolute;
+	left: 3%;
+}
+
+.your-cart-tally-subtotal {
+	float: right;
+	margin-right: 5%;
+	@include clearfix;
 }
 
 .submit-order {
@@ -262,9 +278,11 @@ body {
 	border-radius: 5px;
 	color: $red;
 	margin-top: 3em;
+	margin-left: 1%;
 	height: 50px;
 	transition: all .2s linear;
 	width: 90%;
+	@include clearfix;
 }
 
 .submit-order:hover {
@@ -274,6 +292,6 @@ body {
 	cursor: pointer;
 }
 
-// .main-menu-categories-items {
-// 	display: none;
-// }
+.main-menu-categories-items {
+	display: none;
+}

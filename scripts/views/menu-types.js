@@ -9,7 +9,6 @@ export default Backbone.View.extend({
 	hidden: true,
 
 	events: {
-		'click .main-menu-categories-container': 'showChildren',
 	},
 	
 	initialize: function(options){
@@ -45,10 +44,6 @@ export default Backbone.View.extend({
   	remove: function(){
     	_.invoke(this.children || [], 'remove');
     	Backbone.View.prototype.remove.apply(this, arguments);
-  	},
-
-  	showChildren: function() {
-  		console.log('hi');
   	}
 
 });

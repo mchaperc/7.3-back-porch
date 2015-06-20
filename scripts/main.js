@@ -5,6 +5,13 @@ import router from 'router';
 
   $(document).ready(function(){
     Backbone.history.start();
+
+    $(document).on('click', '.main-menu-categories-type', function() {
+    	$(this).siblings('.main-menu-categories-items').slideToggle();
+    	$(this).children('.fa-chevron-down').toggle();
+    	$(this).children('.fa-chevron-up').toggle();
+    })
+
   });
 
 })();
