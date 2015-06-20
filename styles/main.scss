@@ -19,6 +19,8 @@ $sky: rgb(176, 99, 61);
 $base-font-color: $dark-gray;
 $base-background-color: $very-light-gray;
 
+$mobile: 720px;
+
 * {
 	box-sizing: border-box;
 	outline: none;
@@ -294,4 +296,22 @@ body {
 
 .main-menu-categories-items {
 	display: none;
+}
+
+@include media(max-width $mobile) {
+	.masthead-logo {
+		margin: 20px auto;
+	}
+	.search-bar {
+		text-align: center;
+	}
+	.main-menu-categories,
+	.main-order {
+		@include span-columns (10);
+		@include shift(1);
+		margin-bottom: 2em;
+	}
+	.your-cart {
+		width: 100%;
+	}
 }
