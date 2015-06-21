@@ -52,6 +52,24 @@ body {
 	width: 100%;
 }
 
+.admin-login {
+	font-size: 1em;
+	font-weight: 300;
+	height: 30px;
+	position: absolute;
+	right: 5%;
+	top: 10%;
+	width: 10%;
+}
+
+.admin-login:hover {
+	cursor: pointer;
+}
+
+.fa-lock {
+	margin-right: .6em;
+}
+
 .masthead-logo {
 	display: block;
 	height: 150px;
@@ -296,6 +314,53 @@ body {
 
 .main-menu-categories-items {
 	display: none;
+}
+
+.order-container {
+	text-align: center;
+}
+
+.admin-instructions {
+	color: $black;
+	margin-bottom: 1em;
+}
+
+.order-id {
+	background-color: $tan;
+	border:1px solid $red;
+	border-radius: 3px;
+	color: $black;
+	font-size: 1.2em;
+	margin: auto;
+	margin-bottom: .5em;
+	padding: .6em;
+	text-align: center;
+	width: 60%;
+}
+
+.food-item {
+	color: $red;
+	line-height: 1.5em;
+}
+
+.order-completed {
+	background: linear-gradient($light-gray, $medium-gray);
+	border: 1px solid $black;
+	border-radius: 5px;
+	font-size: 1.2em;
+	height: 50px;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	width: 30%;
+}
+
+.order-completed .fa-check {
+	color: $green;
+	font-size: 1.5em;
+}
+
+.order-completed:hover {
+	cursor: pointer;
 }
 
 @include media(max-width $mobile) {
