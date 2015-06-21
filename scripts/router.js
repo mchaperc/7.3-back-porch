@@ -11,13 +11,18 @@ var Router = Backbone.Router.extend({
 
 	routes: {
 		'': 'index',
-		'admin': 'admin'
+		'admin': 'admin',
+		'contact': 'user'
 	},
 
 	initialize: function() {
 		this.menu = new FoodCollection();
 		this.order = new Order();
 		this.users = new UserCollection();
+		// this.listenTo(this.users, 'add', function() {
+
+		// 	this.navigate('', {trigger: true});
+		// }.bind(this));
 	},
 
 	index: function() {
@@ -26,11 +31,6 @@ var Router = Backbone.Router.extend({
 											order: this.order});
 			$('.main-menu').html(this.menuView.el);
 		}.bind(this));
-		this.users.fetch().then(function(data) {
-			this.users.reset(data);
-			this.contactView = new ContactView({collection: this.users});
-			$('.main-content').prepend(this.contactView.el);
-		})
 		this.orderView = new OrderView({collection: this.order});
 		$('.cart-template').html(this.orderView.el);
 	},
@@ -39,6 +39,14 @@ var Router = Backbone.Router.extend({
 		this.order.fetch().then(function(data) {
 			this.adminView = new AdminView({collection: this.order});
 			$('.main-content').html(this.adminView.el);
+			$('.main-order').html('');
+		}.bind(this));
+	},
+
+	user: function() {
+		this.users.fetch().then(function(data) {
+			this.contactView = new ContactView({collection: this.users});
+			$('.main-content').html(this.contactView.el);
 			$('.main-order').html('');
 		}.bind(this));
 	}

@@ -1,9 +1,8 @@
-<label class="name-label">Name:</label>
-<input type="text" class="name-input" required>
-<label class="phone-label">Name:</label>
-<input type="text" class="phone-input" required>
-<label class="email-label">Name:</label>
-<input type="text" class="email-input" required>
-<label class="address-label">Name:</label>
-<input type="text" class="address-input" required>
-<button class="submit-contact">Submit</button>
+<h2 class="contact-form-heading">Welcome to the Back Porch!</h2>
+<p class="contact-form-heading-text">Thank you for visiting us. We hope you'll take the time to set up your user account so that we can better serve you in the future.</p>
+
+<input type="text" class="name-input" placeholder="Name" required>
+<input pattern='\d{3}[\-]\d{3}[\-]\d{4}' title='Phone Number (Format: 555-555-5555)'type="tel" class="phone-input" placeholder="Phone Number" required>
+<input type="email" class="email-input" placeholder="Email Address" required>
+<textarea class="address-input" placeholder="Street Address" required></textarea>
+<a href="#" class="return-to-menu" title="Submit Contact and return to Menu"><button class="submit-contact">Submit</button></a>

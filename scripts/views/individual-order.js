@@ -13,6 +13,7 @@ export default Backbone.View.extend({
 
 	initialize: function() {
 		this.render();
+		console.log(this.collection);
 	},
 
 	render: function() {

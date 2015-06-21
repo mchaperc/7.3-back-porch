@@ -19,7 +19,7 @@ this["JST"]["cart-order"] = Handlebars.template({"1":function(depth0,helpers,par
     + "</h4>\n</div>\n\n<button class=\"submit-order\"><i class=\"fa fa-check fa-2x\"></i></button>";
 },"useData":true});
 this["JST"]["contact-form"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-    return "<label class=\"name-label\">Name:</label>\n<input type=\"text\" class=\"name-input\" required>\n<label class=\"phone-label\">Name:</label>\n<input type=\"text\" class=\"phone-input\" required>\n<label class=\"email-label\">Name:</label>\n<input type=\"text\" class=\"email-input\" required>\n<label class=\"address-label\">Name:</label>\n<input type=\"text\" class=\"address-input\" required>\n<button class=\"submit-contact\">Submit</button>";
+    return "<h2 class=\"contact-form-heading\">Welcome to the Back Porch!</h2>\n<p class=\"contact-form-heading-text\">Thank you for visiting us. We hope you'll take the time to set up your user account so that we can better serve you in the future.</p>\n\n<input type=\"text\" class=\"name-input\" placeholder=\"Name\" required>\n<input pattern='\\d{3}[\\-]\\d{3}[\\-]\\d{4}' title='Phone Number (Format: 555-555-5555)'type=\"tel\" class=\"phone-input\" placeholder=\"Phone Number\" required>\n<input type=\"email\" class=\"email-input\" placeholder=\"Email Address\" required>\n<textarea class=\"address-input\" placeholder=\"Street Address\" required></textarea>\n<a href=\"#\" class=\"return-to-menu\" title=\"Submit Contact and return to Menu\"><button class=\"submit-contact\">Submit</button></a>";
 },"useData":true});
 this["JST"]["individual-order"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var helper;

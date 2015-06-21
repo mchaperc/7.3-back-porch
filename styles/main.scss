@@ -32,7 +32,6 @@ body {
   color: $base-font-color;
   @include outer-container(1280px);
   font-family: 'Source Sans Pro', sans-serif;
-  padding-bottom: 2em;
 }
 
 .masthead {
@@ -43,31 +42,6 @@ body {
 	box-shadow: 0 2px 3px $sky;
 	height: 250px;
 	position: relative;
-}
-
-.masthead-cover {
-	background-color: rgba(0,0,0,.45);
-	height: 100%;
-	position: absolute;
-	width: 100%;
-}
-
-.admin-login {
-	font-size: 1em;
-	font-weight: 300;
-	height: 30px;
-	position: absolute;
-	right: 5%;
-	top: 10%;
-	width: 10%;
-}
-
-.admin-login:hover {
-	cursor: pointer;
-}
-
-.fa-lock {
-	margin-right: .6em;
 }
 
 .masthead-logo {
@@ -363,7 +337,143 @@ body {
 	cursor: pointer;
 }
 
+footer {
+	background-color: $light-gray;
+	border-top: 1px solid $medium-gray; 
+	height: 125px;
+	margin-top: 2em;
+	position: relative;
+}
+
+.masthead-cover {
+	background-color: rgba(0,0,0,.45);
+	height: 100%;
+	position: absolute;
+	width: 100%;
+}
+
+.admin-login {
+	background: linear-gradient($very-light-gray, $medium-gray);
+	border: 2px solid $red;
+	border-radius: 5px;
+	color: $black;
+	font-size: 1.2em;
+	font-weight: 300;
+	height: 30%;
+	position: absolute;
+	right: 5%;
+	bottom: 35%;
+	transition: all .2s linear;
+	width: 15%;
+}
+
+.contact-link {
+	background: linear-gradient($very-light-gray, $medium-gray);
+	border: 2px solid $red;
+	border-radius: 5px;
+	color: $black;
+	font-size: 1em;
+	font-weight: 300;
+	height: 30%;
+	position: absolute;
+	left: 5%;
+	bottom: 35%;
+	transition: all .2s linear;
+	width: 15%;
+}
+
+.admin-login:hover,
+.contact-link:hover {
+	background: none;
+	background-color: $red;
+	color: white;
+	cursor: pointer;
+}
+
+.modal-contact-form {
+	@include span-columns(6);
+	@include shift(3);
+	background-color: $base-background-color;
+	border: 1px solid $medium-gray;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(0,0,0,.3);
+	color: $black;
+	padding: 2%;
+	position: relative;
+}
+
+.contact-form-heading {	
+	color: $red;
+	font-size: 1.5em;
+	margin: auto;
+	margin-bottom: 1em;
+	text-align: center;
+	width: 70%;
+}
+
+.contact-form-heading-text {
+	font-size: .9em;
+	font-weight: 300;
+	margin: auto;
+	margin-bottom: 2em;
+	text-align: center;
+	width: 90%;
+}
+
+.modal-contact-form input,
+.modal-contact-form textarea {
+	background-color: $light-gray;
+	border: 2px solid $red;
+	border-radius: 5px;
+	color: $red;
+	display: block;
+	font-size: 1em;
+	margin: auto;
+	margin-bottom: .7em;
+	padding: .5em;
+	width: 70%;
+}
+
+.submit-contact {
+	background: linear-gradient($very-light-gray, $medium-gray);
+	border: 2px solid $red;
+	border-radius: 5px;
+	font-size: 1em;
+	height: 35px;
+	margin-left: 15%;
+	transition: .2s all linear;
+	width: 70%;
+}
+
+.submit-contact:hover {
+	background: none;
+	background-color: $red;
+	color: white;
+	cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+   color: $black;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: $black;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: $black;  
+}
+
+:-ms-input-placeholder {  
+   color: $black;  
+}
+
 @include media(max-width $mobile) {
+	.admin-login {
+		height: 40px;
+		text-align: center;
+		width: 20%;
+	}
 	.masthead-logo {
 		margin: 20px auto;
 	}

@@ -83,13 +83,18 @@ var Router = Backbone.Router.extend({
 
 	routes: {
 		'': 'index',
-		'admin': 'admin'
+		'admin': 'admin',
+		'contact': 'user'
 	},
 
 	initialize: function initialize() {
 		this.menu = new _modelsFoodItem.FoodCollection();
 		this.order = new _modelsOrder.Order();
 		this.users = new _modelsUsers.UserCollection();
+		// this.listenTo(this.users, 'add', function() {
+
+		// 	this.navigate('', {trigger: true});
+		// }.bind(this));
 	},
 
 	index: function index() {
@@ -98,11 +103,6 @@ var Router = Backbone.Router.extend({
 				order: this.order });
 			$('.main-menu').html(this.menuView.el);
 		}).bind(this));
-		this.users.fetch().then(function (data) {
-			this.users.reset(data);
-			this.contactView = new _viewsContact2['default']({ collection: this.users });
-			$('.main-content').prepend(this.contactView.el);
-		});
 		this.orderView = new _viewsOrders2['default']({ collection: this.order });
 		$('.cart-template').html(this.orderView.el);
 	},
@@ -111,6 +111,14 @@ var Router = Backbone.Router.extend({
 		this.order.fetch().then((function (data) {
 			this.adminView = new _viewsAdmin2['default']({ collection: this.order });
 			$('.main-content').html(this.adminView.el);
+			$('.main-order').html('');
+		}).bind(this));
+	},
+
+	user: function user() {
+		this.users.fetch().then((function (data) {
+			this.contactView = new _viewsContact2['default']({ collection: this.users });
+			$('.main-content').html(this.contactView.el);
 			$('.main-order').html('');
 		}).bind(this));
 	}
@@ -320,19 +328,36 @@ Object.defineProperty(exports, '__esModule', {
 });
 exports['default'] = Backbone.View.extend({
 
-	template: JST['contact'],
+	template: JST['contact-form'],
+	action: '#',
 	tagName: 'form',
 	className: 'modal-contact-form',
 
-	events: {},
+	events: {
+		'submit': 'addUser'
+	},
 
 	initialize: function initialize() {
-		// this.render();
+		this.render();
 		console.log(this);
 	},
 
 	render: function render() {
 		this.$el.html(this.template(this.collection.toJSON()));
+	},
+
+	addUser: function addUser(e) {
+		e.preventDefault();
+		var name = $('.name-input').val();
+		var phone = $('.phone-input').val();
+		var email = $('.email-input').val();
+		var address = $('.address-input').val();
+		this.collection.create({
+			name: name,
+			phone: phone,
+			email: email,
+			address: address
+		});
 	}
 
 });
@@ -359,6 +384,7 @@ exports['default'] = Backbone.View.extend({
 
 	initialize: function initialize() {
 		this.render();
+		console.log(this.collection);
 	},
 
 	render: function render() {
