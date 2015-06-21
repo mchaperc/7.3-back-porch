@@ -56,7 +56,10 @@ var Order = Backbone.Model.extend({
 
 var OrderCollection = Backbone.Collection.extend({
   model: Order,
-  url: "https://api.parse.com/1/classes/Order"
+  url: "https://api.parse.com/1/classes/Order",
+  parse: function(response) {
+    return response.results;
+  }
 });
 
 export default {Order, OrderCollection};

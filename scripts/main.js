@@ -10,6 +10,11 @@ import router from 'router';
     	$(this).siblings('.main-menu-categories-items').slideToggle();
     	$(this).children('.fa-chevron-down').toggle();
     	$(this).children('.fa-chevron-up').toggle();
+    });
+
+    $('.contact').on('click', function(e) {
+    	$('.modal-contact-form').show();
+    	$('.blanket-div').show();
     })
 
   });
