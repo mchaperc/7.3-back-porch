@@ -1,4 +1,7 @@
 this["JST"] = this["JST"] || {};
+this["JST"]["admin-orders"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "";
+},"useData":true});
 this["JST"]["cart-order"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
     var helper, alias1=helpers.helperMissing, alias2="function", alias3=this.escapeExpression;
 
@@ -14,6 +17,24 @@ this["JST"]["cart-order"] = Handlebars.template({"1":function(depth0,helpers,par
     + "<div class=\"cart-divide\"></div>\n<div class=\"your-cart-tally\">\n	<h4 class=\"your-cart-tally-label\">Subtotal</h4>\n	<h4 class=\"your-cart-tally-subtotal\">$ "
     + this.escapeExpression(((helper = (helper = helpers.subtotal || (depth0 != null ? depth0.subtotal : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"subtotal","hash":{},"data":data}) : helper)))
     + "</h4>\n</div>\n\n<button class=\"submit-order\"><i class=\"fa fa-check fa-2x\"></i></button>";
+},"useData":true});
+this["JST"]["contact-form"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<label class=\"name-label\">Name:</label>\n<input type=\"text\" class=\"name-input\" required>\n<label class=\"phone-label\">Name:</label>\n<input type=\"text\" class=\"phone-input\" required>\n<label class=\"email-label\">Name:</label>\n<input type=\"text\" class=\"email-input\" required>\n<label class=\"address-label\">Name:</label>\n<input type=\"text\" class=\"address-input\" required>\n<button class=\"submit-contact\">Submit</button>";
+},"useData":true});
+this["JST"]["individual-order"] = Handlebars.template({"1":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "		<li class=\"food-item\">\n			Food ID: "
+    + this.escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"objectId","hash":{},"data":data}) : helper)))
+    + "\n		</li>\n";
+},"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var stack1, helper;
+
+  return "\n	<h3 class=\"order-id\">Order ID: "
+    + this.escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"objectId","hash":{},"data":data}) : helper)))
+    + "</h3>\n	<ul class=\"food-list\">\n"
+    + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.foods : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
+    + "	</ul>\n	<button class=\"order-completed\"><i class=\"fa fa-check\"></i> Order Complete</button>\n";
 },"useData":true});
 this["JST"]["menu-collection"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "";

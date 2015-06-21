@@ -34,6 +34,11 @@ var _router2 = _interopRequireDefault(_router);
       $(this).children('.fa-chevron-down').toggle();
       $(this).children('.fa-chevron-up').toggle();
     });
+
+    $('.contact').on('click', function (e) {
+      $('.modal-contact-form').show();
+      $('.blanket-div').show();
+    });
   });
 })();
   
@@ -56,9 +61,19 @@ var _viewsOrders = require('./views/orders');
 
 var _viewsOrders2 = _interopRequireDefault(_viewsOrders);
 
+var _viewsAdmin = require('./views/admin');
+
+var _viewsAdmin2 = _interopRequireDefault(_viewsAdmin);
+
+var _viewsContact = require('./views/contact');
+
+var _viewsContact2 = _interopRequireDefault(_viewsContact);
+
 var _modelsFoodItem = require('./models/foodItem');
 
 var _modelsOrder = require('./models/order');
+
+var _modelsUsers = require('./models/users');
 
 var _ajaxConfig = require('ajax-config');
 
@@ -67,12 +82,14 @@ var _ajaxConfig2 = _interopRequireDefault(_ajaxConfig);
 var Router = Backbone.Router.extend({
 
 	routes: {
-		'': 'index'
+		'': 'index',
+		'admin': 'admin'
 	},
 
 	initialize: function initialize() {
 		this.menu = new _modelsFoodItem.FoodCollection();
 		this.order = new _modelsOrder.Order();
+		this.users = new _modelsUsers.UserCollection();
 	},
 
 	index: function index() {
@@ -81,8 +98,21 @@ var Router = Backbone.Router.extend({
 				order: this.order });
 			$('.main-menu').html(this.menuView.el);
 		}).bind(this));
+		this.users.fetch().then(function (data) {
+			this.users.reset(data);
+			this.contactView = new _viewsContact2['default']({ collection: this.users });
+			$('.main-content').prepend(this.contactView.el);
+		});
 		this.orderView = new _viewsOrders2['default']({ collection: this.order });
 		$('.cart-template').html(this.orderView.el);
+	},
+
+	admin: function admin() {
+		this.order.fetch().then((function (data) {
+			this.adminView = new _viewsAdmin2['default']({ collection: this.order });
+			$('.main-content').html(this.adminView.el);
+			$('.main-order').html('');
+		}).bind(this));
 	}
 
 });
@@ -185,10 +215,163 @@ var Order = Backbone.Model.extend({
 
 var OrderCollection = Backbone.Collection.extend({
   model: Order,
-  url: 'https://api.parse.com/1/classes/Order'
+  url: 'https://api.parse.com/1/classes/Order',
+  parse: function parse(response) {
+    return response.results;
+  }
 });
 
 exports['default'] = { Order: Order, OrderCollection: OrderCollection };
+module.exports = exports['default'];
+  
+});
+
+require.register("models/users", function(exports, require, module){
+  'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+var User = Backbone.Model.extend({
+
+	urlRoot: 'https://api.parse.com/1/classes/Users',
+
+	idAttribute: 'objectId',
+	defaults: {
+		name: '',
+		phone: '',
+		email: '',
+		address: ''
+	}
+
+});
+
+var UserCollection = Backbone.Collection.extend({
+
+	model: User,
+	url: 'https://api.parse.com/1/classes/Users',
+	parse: function parse(response) {
+		return response.results;
+	}
+});
+
+exports['default'] = { User: User, UserCollection: UserCollection };
+module.exports = exports['default'];
+  
+});
+
+require.register("views/admin", function(exports, require, module){
+  'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _individualOrder = require('./individual-order');
+
+var _individualOrder2 = _interopRequireDefault(_individualOrder);
+
+exports['default'] = Backbone.View.extend({
+
+  template: JST['admin-orders'],
+  tagName: 'div',
+  className: 'order-container',
+
+  initialize: function initialize() {
+    this.render();
+    this.listenTo(this.collection, 'add remove', this.render);
+  },
+
+  render: function render() {
+    // this.$el.html(this.template(this.collection.toJSON()));
+    this.renderChildren();
+  },
+
+  renderChildren: function renderChildren(options) {
+    _.invoke(this.children || [], 'remove');
+
+    this.children = this.collection.attributes.results.map((function (child) {
+      var view = new _individualOrder2['default']({
+        model: child,
+        collection: this.collection
+      });
+      this.$el.append(view.el);
+      return view;
+    }).bind(this));
+  },
+
+  remove: function remove() {
+    _.invoke(this.children || [], 'remove');
+    Backbone.View.prototype.remove.apply(this, arguments);
+  }
+
+});
+module.exports = exports['default'];
+  
+});
+
+require.register("views/contact", function(exports, require, module){
+  'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+exports['default'] = Backbone.View.extend({
+
+	template: JST['contact'],
+	tagName: 'form',
+	className: 'modal-contact-form',
+
+	events: {},
+
+	initialize: function initialize() {
+		// this.render();
+		console.log(this);
+	},
+
+	render: function render() {
+		this.$el.html(this.template(this.collection.toJSON()));
+	}
+
+});
+module.exports = exports['default'];
+  
+});
+
+require.register("views/individual-order", function(exports, require, module){
+  'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+	value: true
+});
+exports['default'] = Backbone.View.extend({
+
+	template: JST['individual-order'],
+
+	tagName: 'div',
+	className: 'order-container-individual',
+
+	events: {
+		'click .order-completed': 'completeOrder'
+	},
+
+	initialize: function initialize() {
+		this.render();
+	},
+
+	render: function render() {
+		this.$el.html(this.template(this.model));
+	},
+
+	completeOrder: function completeOrder() {
+		if (confirm('Are you sure this order is completed?')) {
+			this.collection.remove(this.model);
+		}
+	}
+
+});
 module.exports = exports['default'];
   
 });
