@@ -367,6 +367,21 @@ footer {
 	width: 15%;
 }
 
+.menu-link {
+	background: linear-gradient($very-light-gray, $medium-gray);
+	border: 2px solid $red;
+	border-radius: 5px;
+	color: $black;
+	font-size: 1.2em;
+	font-weight: 300;
+	height: 30%;
+	position: absolute;
+	left: 42.5%;
+	bottom: 35%;
+	transition: all .2s linear;
+	width: 15%;
+}
+
 .contact-link {
 	background: linear-gradient($very-light-gray, $medium-gray);
 	border: 2px solid $red;
@@ -383,7 +398,8 @@ footer {
 }
 
 .admin-login:hover,
-.contact-link:hover {
+.contact-link:hover,
+.menu-link:hover {
 	background: none;
 	background-color: $red;
 	color: white;
@@ -440,7 +456,9 @@ footer {
 	border-radius: 5px;
 	font-size: 1em;
 	height: 35px;
+	margin-bottom: 1em;
 	margin-left: 15%;
+	margin-top: 1em;
 	transition: .2s all linear;
 	width: 70%;
 }
@@ -466,6 +484,66 @@ footer {
 
 :-ms-input-placeholder {  
    color: $black;  
+}
+
+.order-complete,
+.user-added {
+	background-color: rgba(0,0,0,.3);
+	display: none;
+	position: fixed;
+	height: 100%;
+	top: 0;
+	width: 100%;
+}
+
+.order-complete-message,
+.user-added-message {
+	background-color: $light-gray;
+	border: 2px solid $red;
+	border-radius: 5px;
+	box-shadow: 0 0 7px rgba(0,0,0,.8);
+	color: $black;
+	height: 50%;
+	left: 25%;
+	padding: 2em;
+	position: fixed;
+	text-align: center;
+	top: 25%;
+	width: 50%;
+}
+
+.order-complete-message-heading,
+.user-added-message-heading {
+	font-size: 2em;
+	margin-bottom: 2em;
+}
+
+.order-complete-message-text,
+.user-added-message-text {
+	font-size: 1.2em;
+	font-weight: 300;
+	line-height: 1.3em;
+	margin: auto;
+	width: 90%;
+}
+
+.fa-times,
+.fa-close {
+	border: 2px solid $black;
+	border-radius: 5px;
+	padding: .5em;
+	position: absolute;
+	right: 3%;
+	top: 3%;
+	transition: all .2s linear;
+}
+
+.fa-times:hover,
+.fa-close:hover {
+	background-color: $tan;
+	border-color: $red;
+	color: $red;
+	cursor: pointer;
 }
 
 @include media(max-width $mobile) {

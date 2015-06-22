@@ -21,6 +21,9 @@ export default Backbone.View.extend({
 
 	submitOrder: function() {
 		this.collection.save();
+		$('.your-cart-values').html('');
+		$('.your-cart-tally-subtotal').text('$ 0');
+		$('.order-complete').show();
 	}
 
 });

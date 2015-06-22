@@ -39,6 +39,14 @@ var _router2 = _interopRequireDefault(_router);
       $('.modal-contact-form').show();
       $('.blanket-div').show();
     });
+
+    $('.fa-times').on('click', function () {
+      $('.order-complete').hide();
+    });
+
+    $('.fa-close').on('click', function () {
+      $('.user-added').hide();
+    });
   });
 })();
   
@@ -365,6 +373,7 @@ exports['default'] = Backbone.View.extend({
 			email: email,
 			address: address
 		});
+		$('.user-added').show();
 	}
 
 });
@@ -614,6 +623,9 @@ exports['default'] = Backbone.View.extend({
 
 	submitOrder: function submitOrder() {
 		this.collection.save();
+		$('.your-cart-values').html('');
+		$('.your-cart-tally-subtotal').text('$ 0');
+		$('.order-complete').show();
 	}
 
 });

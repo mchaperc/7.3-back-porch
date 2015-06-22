@@ -15,6 +15,14 @@ import router from 'router';
     $('.contact').on('click', function(e) {
     	$('.modal-contact-form').show();
     	$('.blanket-div').show();
+    });
+
+    $('.fa-times').on('click', function() {
+      $('.order-complete').hide();
+    })
+
+    $('.fa-close').on('click', function() {
+      $('.user-added').hide();
     })
 
   });

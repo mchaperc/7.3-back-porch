@@ -30,6 +30,7 @@ export default Backbone.View.extend({
 			email: email,
 			address: address
 		});
+		$('.user-added').show();
 	}
 
 });
