@@ -91,10 +91,6 @@ var Router = Backbone.Router.extend({
 		this.menu = new _modelsFoodItem.FoodCollection();
 		this.order = new _modelsOrder.Order();
 		this.users = new _modelsUsers.UserCollection();
-		// this.listenTo(this.users, 'add', function() {
-
-		// 	this.navigate('', {trigger: true});
-		// }.bind(this));
 	},
 
 	index: function index() {
@@ -102,24 +98,26 @@ var Router = Backbone.Router.extend({
 			this.menuView = new _viewsMenuCollection2['default']({ collection: this.menu,
 				order: this.order });
 			$('.main-menu').html(this.menuView.el);
+			$('.main-order').show();
 		}).bind(this));
 		this.orderView = new _viewsOrders2['default']({ collection: this.order });
 		$('.cart-template').html(this.orderView.el);
 	},
 
 	admin: function admin() {
-		this.order.fetch().then((function (data) {
-			this.adminView = new _viewsAdmin2['default']({ collection: this.order });
-			$('.main-content').html(this.adminView.el);
-			$('.main-order').html('');
+		this.orders = new _modelsOrder.OrderCollection();
+		this.orders.fetch().then((function (data) {
+			this.adminView = new _viewsAdmin2['default']({ collection: this.orders });
+			$('.main-menu').html(this.adminView.el);
+			$('.main-order').hide();
 		}).bind(this));
 	},
 
 	user: function user() {
 		this.users.fetch().then((function (data) {
 			this.contactView = new _viewsContact2['default']({ collection: this.users });
-			$('.main-content').html(this.contactView.el);
-			$('.main-order').html('');
+			$('.main-menu').html(this.contactView.el);
+			$('.main-order').hide();
 		}).bind(this));
 	}
 
@@ -146,7 +144,7 @@ var FoodItem = Backbone.Model.extend({
 var FoodCollection = Backbone.Collection.extend({
 
 	model: FoodItem,
-	url: 'https://api.parse.com/1/classes/menu',
+	url: 'https://api.parse.com/1/classes/Food',
 	parse: function parse(response) {
 		return response.results;
 	}
@@ -176,9 +174,9 @@ var Order = Backbone.Model.extend({
     name: ''
   },
 
-  initialize: function initialize() {
+  initialize: function initialize(attrs, options) {
     // Create a task collection to keep track of our tasks
-    this.foods = new _foodItem.FoodCollection();
+    this.foods = new _foodItem.FoodCollection(attrs && attrs.foods);
 
     // Trigger all tasks events on myself
     this.listenTo(this.foods, 'all', this.trigger.bind(this));
@@ -209,8 +207,17 @@ var Order = Backbone.Model.extend({
   serialize: function serialize() {
     return _.extend({}, this.attributes, {
       foods: this.foods.toJSON(),
-      subtotal: this.subtotal()
+      subtotal: this.subtotal(),
+      noFoods: this.hasFoods()
     });
+  },
+
+  hasFoods: function hasFoods() {
+    if (this.foods.length < 1) {
+      return true;
+    } else {
+      return false;
+    }
   },
 
   subtotal: function subtotal() {
@@ -223,7 +230,7 @@ var Order = Backbone.Model.extend({
 
 var OrderCollection = Backbone.Collection.extend({
   model: Order,
-  url: 'https://api.parse.com/1/classes/Order',
+  url: 'https://api.parse.com/1/classes/Order?include=foods',
   parse: function parse(response) {
     return response.results;
   }
@@ -281,6 +288,8 @@ var _individualOrder = require('./individual-order');
 
 var _individualOrder2 = _interopRequireDefault(_individualOrder);
 
+var _modelsOrder = require('../models/order');
+
 exports['default'] = Backbone.View.extend({
 
   template: JST['admin-orders'],
@@ -293,17 +302,15 @@ exports['default'] = Backbone.View.extend({
   },
 
   render: function render() {
-    // this.$el.html(this.template(this.collection.toJSON()));
     this.renderChildren();
   },
 
   renderChildren: function renderChildren(options) {
     _.invoke(this.children || [], 'remove');
 
-    this.children = this.collection.attributes.results.map((function (child) {
+    this.children = this.collection.map((function (child) {
       var view = new _individualOrder2['default']({
-        model: child,
-        collection: this.collection
+        model: child
       });
       this.$el.append(view.el);
       return view;
@@ -384,16 +391,16 @@ exports['default'] = Backbone.View.extend({
 
 	initialize: function initialize() {
 		this.render();
-		console.log(this.collection);
+		console.log(this.model);
 	},
 
 	render: function render() {
-		this.$el.html(this.template(this.model));
+		this.$el.html(this.template(this.model.serialize()));
 	},
 
 	completeOrder: function completeOrder() {
 		if (confirm('Are you sure this order is completed?')) {
-			this.collection.remove(this.model);
+			this.model.destroy();
 		}
 	}
 
@@ -431,6 +438,7 @@ exports['default'] = Backbone.View.extend({
 	render: function render(options) {
 		this.$el.html(this.template(this.collection.toJSON()));
 		this.renderChildren(options);
+		console.log(options.order);
 	},
 
 	renderChildren: function renderChildren(options) {
@@ -602,10 +610,6 @@ exports['default'] = Backbone.View.extend({
 
 	render: function render() {
 		this.$el.html(this.template(this.collection.serialize()));
-	},
-
-	doStuff: function doStuff(args) {
-		console.log(this.collection.subtotal());
 	},
 
 	submitOrder: function submitOrder() {

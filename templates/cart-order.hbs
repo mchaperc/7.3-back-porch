@@ -10,4 +10,4 @@
 	<h4 class="your-cart-tally-subtotal">$ {{subtotal}}</h4>
 </div>
 
-<button class="submit-order"><i class="fa fa-check fa-2x"></i></button>
+<button class="submit-order" {{#if noFoods}} disabled {{/if}}><i class="fa fa-check fa-2x"></i></button>

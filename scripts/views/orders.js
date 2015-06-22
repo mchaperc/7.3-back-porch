@@ -19,10 +19,6 @@ export default Backbone.View.extend({
 		this.$el.html(this.template(this.collection.serialize()));
 	},
 
-	doStuff: function(args) {
-		console.log(this.collection.subtotal());
-	},
-
 	submitOrder: function() {
 		this.collection.save();
 	}

@@ -9,12 +9,13 @@ var Order = Backbone.Model.extend({
     name: ""
   },
 
-  initialize: function(){
+  initialize: function(attrs, options){
     // Create a task collection to keep track of our tasks
-    this.foods = new FoodCollection();
+    this.foods = new FoodCollection(attrs && attrs.foods);
 
     // Trigger all tasks events on myself
     this.listenTo(this.foods, 'all', this.trigger.bind(this));
+
   },
 
   // Proxy the add method to the underlying task collection
@@ -42,8 +43,17 @@ var Order = Backbone.Model.extend({
   serialize: function() {
     return _.extend({}, this.attributes, {
       foods: this.foods.toJSON(),
-      subtotal: this.subtotal()
+      subtotal: this.subtotal(),
+      noFoods: this.hasFoods()
     });
+  },
+
+  hasFoods: function() {
+    if (this.foods.length < 1) {
+      return true;
+    } else {
+      return false;
+    }
   },
 
   subtotal: function() {
@@ -56,7 +66,7 @@ var Order = Backbone.Model.extend({
 
 var OrderCollection = Backbone.Collection.extend({
   model: Order,
-  url: "https://api.parse.com/1/classes/Order",
+  url: "https://api.parse.com/1/classes/Order?include=foods",
   parse: function(response) {
     return response.results;
   }

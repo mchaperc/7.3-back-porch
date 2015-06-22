@@ -18,6 +18,7 @@ export default Backbone.View.extend({
 	render: function(options) {
 		this.$el.html(this.template(this.collection.toJSON()));
 		this.renderChildren(options);
+		console.log(options.order);
 	},
 
 	renderChildren: function(options){

@@ -1,4 +1,5 @@
 import IndividualOrderView from './individual-order';
+import {Order, OrderCollection} from '../models/order';
 
 export default Backbone.View.extend({
 
@@ -12,18 +13,16 @@ export default Backbone.View.extend({
 	},
 
 	render: function() {
-		// this.$el.html(this.template(this.collection.toJSON()));
 		this.renderChildren();
-
 	},
 
 	renderChildren: function(options){
     	_.invoke(this.children || [], 'remove');
 
-    	this.children = this.collection.attributes.results.map(function(child) {
+
+    	this.children = this.collection.map(function(child) {
     			var view = new IndividualOrderView({
-        			model: child,
-        			collection: this.collection,
+        			model: child
       			});
       			this.$el.append(view.el);
       			return view;

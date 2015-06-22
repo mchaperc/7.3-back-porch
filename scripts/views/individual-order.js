@@ -1,5 +1,3 @@
-
-
 export default Backbone.View.extend({
 
 	template: JST['individual-order'],
@@ -13,16 +11,16 @@ export default Backbone.View.extend({
 
 	initialize: function() {
 		this.render();
-		console.log(this.collection);
+		console.log(this.model);
 	},
 
 	render: function() {
-		this.$el.html(this.template(this.model));
+		this.$el.html(this.template(this.model.serialize()));
 	},
 
 	completeOrder: function() {
 		if (confirm("Are you sure this order is completed?")) {
-			this.collection.remove(this.model);
+			this.model.destroy();
 		}
 	}
 

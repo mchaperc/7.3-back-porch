@@ -7,7 +7,7 @@ var FoodItem = Backbone.Model.extend({
 var FoodCollection = Backbone.Collection.extend({
 
 	model: FoodItem,
-	url: 'https://api.parse.com/1/classes/menu',
+	url: 'https://api.parse.com/1/classes/Food',
 	parse: function(response) {
 		return response.results;
 	}
