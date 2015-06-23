@@ -325,7 +325,7 @@ body {
 	height: 50px;
 	margin-bottom: 1em;
 	margin-top: 1em;
-	width: 30%;
+	width: 20%;
 }
 
 .order-completed .fa-check {
@@ -503,10 +503,11 @@ footer {
 	border-radius: 5px;
 	box-shadow: 0 0 7px rgba(0,0,0,.8);
 	color: $black;
-	height: 50%;
+	height: 60%;
 	left: 25%;
 	padding: 2em;
 	position: fixed;
+	overflow: scroll;
 	text-align: center;
 	top: 25%;
 	width: 50%;
@@ -516,6 +517,7 @@ footer {
 .user-added-message-heading {
 	font-size: 2em;
 	margin-bottom: 2em;
+	margin-top: 1em;
 }
 
 .order-complete-message-text,
@@ -547,13 +549,18 @@ footer {
 }
 
 @include media(max-width $mobile) {
+	.masthead {
+		height: 180px;
+	}
 	.admin-login {
 		height: 40px;
 		text-align: center;
 		width: 20%;
 	}
 	.masthead-logo {
+		height: 80px;
 		margin: 20px auto;
+		width: 150px;
 	}
 	.search-bar {
 		text-align: center;
@@ -566,5 +573,14 @@ footer {
 	}
 	.your-cart {
 		width: 100%;
+	}
+	.modal-contact-form {
+		@include span-columns(10);
+		@include shift(1);
+	}
+	.order-complete-message,
+	.user-added-message {
+		left: 10%;
+		width: 80%;
 	}
 }

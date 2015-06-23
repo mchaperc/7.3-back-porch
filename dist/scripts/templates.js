@@ -38,7 +38,7 @@ this["JST"]["individual-order"] = Handlebars.template({"1":function(depth0,helpe
     + this.escapeExpression(((helper = (helper = helpers.objectId || (depth0 != null ? depth0.objectId : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"objectId","hash":{},"data":data}) : helper)))
     + "</h3>\n	<ul class=\"food-list\">\n"
     + ((stack1 = helpers.each.call(depth0,(depth0 != null ? depth0.foods : depth0),{"name":"each","hash":{},"fn":this.program(1, data, 0),"inverse":this.noop,"data":data})) != null ? stack1 : "")
-    + "	</ul>\n	<button class=\"order-completed\"><i class=\"fa fa-check\"></i> Order Complete</button>\n";
+    + "	</ul>\n	<button class=\"order-completed\"><i class=\"fa fa-check\"></i></button>\n";
 },"useData":true});
 this["JST"]["menu-collection"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "";
